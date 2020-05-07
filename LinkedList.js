@@ -26,9 +26,10 @@ class LinkedLink {
         else {
             let tempNode = this.head;
             while (tempNode.next !== null) {
+                tempNode = tempNode.next;
+                }
                 tempNode.next = new _Node(item, null);
             }
-        }
     }
 
     find(item) {
@@ -83,6 +84,4 @@ class LinkedLink {
         }
         previousNode.next = currNode.next;
     }
-
-    
 }
