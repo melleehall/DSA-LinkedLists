@@ -176,5 +176,99 @@ function WhatDoesThisProgramDo(lst) {
 // of a given singly linked list. In other words, all pointers 
 // should point backward. 
 
+function reverseList (linkList) {
+    // Traverse the list keeping track of where we were/are
+    let currNode = linkList.head;
+    let prevNode;
+    let tempNode;
+  
+    // iterate while we have a current node
+    while ( currNode ) {
+  
+        // Store the next node
+        tempNode = currNode.next;
+  
+        // Set current node's next node to the previous node
+        // If first node, this is null
+        currNode.next = prevNode;
+  
+        // Set our previous node to be the current node
+        prevNode = currNode;
+  
+        // set current node to the stored node that was originally next
+        currNode = tempNode;
+      }
+  
+    linkList.head = prevNode;
+  
+    return linkList;
+  }
+  
+  console.log(reverseList(SLLLinkedList))
+
 
 // BONUS: Solve this problem using both recursive and iterative algorithms.
+// To do later
+
+
+// 3rd from the end
+// Write an algorithm to find the 3rd element from the end of a 
+// linked list. Note You may be tempted to add a length property 
+// to your linked list class. The length property is not a typical 
+// property of linked list, therefore don't make any modification to 
+// the linked list class that is provided to you.
+
+function thirdFromEnd(linkedList) {
+    let startNode = linkedList.head
+    if (startNode === null || startNode.next === null || startNode.next.next === null) {
+      return 'List must have a minimum of 3 items';
+    }
+  
+    let endNode = startNode.next.next.next;
+    console.log(endNode)
+    
+    while (endNode.next !== null) {
+      startNode = startNode.next;
+      endNode = endNode.next;
+    }
+  
+    return startNode;
+  }
+  
+  console.log(thirdFromEnd(SLLLinkedList))
+
+
+
+
+// Middle of a list
+// Write an algorithm to find the middle element of a linked list. 
+// Note You may be tempted to add a length property to your linked 
+// list class. The length property is not a typical property of 
+// linked list, therefore don't make any modification to the linked 
+// list class that is provided to you. Also, finding the size of the 
+// linked list using the size() function and dividing it by half 
+// will not find the correct middle of the linked list. So, don't 
+// use either of these approaches.
+
+
+function listMiddle(linkedList) {
+    let items = [];
+
+    if (linkedList.head === null) {
+        return 'Linked list empty'
+    }
+    else {
+        listItem = linkedList.head
+    }
+
+    while(listItem.next !== null) {
+        items.push(listItem.value);
+        listItem = listItem.next;
+    }
+    
+    let middleIdx = Math.floor(items.length / 2)
+    return items[middleIdx]
+}
+
+listMiddle(SLLLinkedList)
+
