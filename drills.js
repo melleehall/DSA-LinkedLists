@@ -272,3 +272,129 @@ function listMiddle(linkedList) {
 
 listMiddle(SLLLinkedList)
 
+// Cycle in a list
+// Write an algorithm to find whether a linked list has a 
+// cycle (i.e., whether a node in the list has its next value 
+// pointing to an earlier node in the list). 
+// For this exercise, create a linked list with the name CycleList. 
+// Be sure to insert nodes in the list so that it has a cycle. 
+// Then test your program with a cycleList function.
+
+// ****INCOMPLETE*****
+
+function createCycleList() {
+    let cycleList = new LinkedList();
+  
+    const items = ['A', 'B', 'C']
+    for (let i = 0; i < items.length; i++) {
+      cycleList.insertLast(items[i])
+    }
+  
+    let firstNode = cycleList.find('A')
+    let lastNode = cycleList.find('C')
+    lastNode.next = firstNode
+     
+    return cycleList;
+  }
+  
+  const cl = createCycleList()
+  
+  function isItACycle(linkedList, nodeInQuestion) { 
+    let head = linkedList.head
+    let end;
+    if (!nodeInQuestion) {
+      end = linkedList.head.next;
+    } else {
+      end = nodeInQuestion
+    }
+  
+    console.log(end)
+  
+    // Base case
+    // if we have looked at all of the nodes and none of them have returned 'true', exit
+    if (nodeInQuestion.next === null) {
+      return 'No cycles found'
+    }
+    
+  
+    // General case
+    // start at the head 
+  
+    // while currNode !== end
+  
+    // iterate over the nodes checking if the end's pointer is to any of them
+  
+    // if so, return 'cycle'
+  
+  
+    // otherwise, call isItACycle(linkedList, end.next)
+  
+  }
+  
+  isItACycle(cl)
+
+
+// Sorting a list
+// Write an algorithm that will sort a given linked list. 
+// For example given a list such as 3->2->5->7->1, your program will 
+// output the sorted version of this list which will be 1->2->3->5->7. 
+// You may not use another list or any other data structure such as 
+// an array to store the data.
+
+
+// ****INCOMPLETE*****
+
+function sortList(linkedList, startingNode, changes) {
+    console.log(display(linkedList))
+    console.log(startingNode)
+    if (linkedList.head === null) {
+      return null;
+    }
+    
+    // we need to keep track of whether any changes are made and only call the function recursively if changes > 0
+  
+    // start with the first node
+    let currNode = linkedList.head
+  
+    // update lowestNode as we come across any nodes with lower values while iterating over the list
+    let lowestNode = currNode
+   
+    while (currNode !== null) {
+      // replace the lowestNode with the currNode if its value is lower
+      if (currNode.value < lowestNode.value) {
+        lowestNode = currNode;
+        changes = changes + 1;
+      }
+      // move to the next node
+      currNode = currNode.next;
+    }
+  
+    console.log(`changes: ${changes}`)
+  
+    // save the lowest value
+    let tempValue = lowestNode.value;
+    // remove it from its original spot in the linked list
+    linkedList.remove(lowestNode.value);
+    // insertLast the lowestNode's value 
+    linkedList.insertFirst(tempValue)
+  
+    // if (changes > 0) {
+    //   sortList(linkedList, tempValue, 0)
+    // }
+    
+  }
+  
+  
+  function createNumsLL() {
+    const numsLL = new LinkedList()
+    numsLL.insertLast(4)
+    numsLL.insertLast(2)
+    numsLL.insertLast(1)
+    numsLL.insertLast(8)
+    numsLL.insertLast(5)
+  
+    return numsLL
+  }
+  
+  // const numsLL = createNumsLL()
+  // sortList(numsLL, 0)
